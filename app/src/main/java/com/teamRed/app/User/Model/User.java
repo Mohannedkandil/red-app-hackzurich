@@ -36,6 +36,8 @@ public class User {
         this.experiencePoints = 0;
         this.activeChallenges = new ArrayList<>();
         this.completedChallenges = new HashMap<>();
+        this.productCart = new ArrayList<>();
+        this.groceryList = new ArrayList<>();
     }
 
     public User(String email, int level, int experiencePoints) {
@@ -52,7 +54,7 @@ public class User {
     }
 
     @PersistenceConstructor
-    public User(int level, String email, int experiencePoints, List<Product> groceryList, List<Product> productCart, List<Challenge> activeChallenges, Map<LocalDateTime, Challenge> completedChallenges) {
+    public User(String email, int level, int experiencePoints, List<Product> groceryList, List<Product> productCart, List<Challenge> activeChallenges, Map<LocalDateTime, Challenge> completedChallenges) {
         this.email = email;
         this.level = level;
         this.experiencePoints = experiencePoints;
@@ -142,5 +144,13 @@ public class User {
                 var logger = Logger.getLogger(User.class.getName());
                 logger.log(Level.WARNING, "Wrong Enum Selected");
         }
+    }
+
+    public List<Challenge> getActiveChallenges() {
+        return activeChallenges;
+    }
+
+    public Map<LocalDateTime, Challenge> getCompletedChallenges() {
+        return completedChallenges;
     }
 }

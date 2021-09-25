@@ -4,5 +4,6 @@ public enum TaskType {
     DAILY,
     WEEKLY,
     MONTHLY,
+    PRODUCT_SCANNING,
     STAMP;
 }

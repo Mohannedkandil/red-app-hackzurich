@@ -1,4 +1,8 @@
 package com.teamRed.app.Challenges.Model;
 
-public class ChallengeDuration {
+public enum ChallengeDuration {
+    DAILY,
+    MONTHLY,
+    WEEKLY,
+    THREE_MONTHS;
 }
