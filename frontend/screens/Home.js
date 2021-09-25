@@ -5,7 +5,7 @@ import LeaderboardTabView from "../components/LeaderboardTabView";
 
 export default function Home({navigation}) {
     return (
-        <View flex={1} ml={3} mr={3}>
+        <View flex={1} ml={3} mr={3} mt={10}>
             <Challenges/>
             <LeaderboardTabView/>
         </View>

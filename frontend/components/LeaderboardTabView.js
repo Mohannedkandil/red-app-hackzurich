@@ -104,7 +104,6 @@ export default function LeaderboardTabView() {
 
     return (
         <TabView
-            flex={1}
             navigationState={{index, routes}}
             renderScene={renderScene}
             renderTabBar={renderTabBar}
