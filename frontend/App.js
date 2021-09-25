@@ -1,15 +1,71 @@
-import React from 'react';
-import * as eva from '@eva-design/eva';
-import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
+import React from "react";
+import {
+  Text,
+  Link,
+  HStack,
+  Center,
+  Heading,
+  Switch,
+  useColorMode,
+  NativeBaseProvider,
+  extendTheme,
+  VStack,
+  Code,
+} from "native-base";
+import NativeBaseIcon from "./components/NativeBaseIcon";
 
-const HomeScreen = () => (
-    <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text category='h1'>HOME</Text>
-    </Layout>
-);
+// Define the config
+const config = {
+  useSystemColorMode: false,
+  initialColorMode: "dark",
+};
 
-export default () => (
-    <ApplicationProvider {...eva} theme={eva.light}>
-        <HomeScreen />
-    </ApplicationProvider>
-);
+// extend the theme
+export const theme = extendTheme({ config });
+
+export default function App() {
+  return (
+    <NativeBaseProvider>
+      <Center
+        _dark={{ bg: "blueGray.900" }}
+        _light={{ bg: "blueGray.50" }}
+        px={4}
+        flex={1}
+      >
+        <VStack space={5} alignItems="center">
+          <NativeBaseIcon />
+          <Heading size="lg">Welcome to NativeBase</Heading>
+          <HStack space={2} alignItems="center">
+            <Text>Edit</Text>
+            <Code>App.js</Code>
+            <Text>and save to reload.</Text>
+          </HStack>
+          <Link href="https://docs.nativebase.io" isExternal>
+            <Text color="primary.500" underline fontSize={"xl"}>
+              Learn NativeBase
+            </Text>
+          </Link>
+          <ToggleDarkMode />
+        </VStack>
+      </Center>
+    </NativeBaseProvider>
+  );
+}
+
+// Color Switch Component
+function ToggleDarkMode() {
+  const { colorMode, toggleColorMode } = useColorMode();
+  return (
+    <HStack space={2} alignItems="center">
+      <Text>Dark</Text>
+      <Switch
+        isChecked={colorMode === "light" ? true : false}
+        onToggle={toggleColorMode}
+        aria-label={
+          colorMode === "light" ? "switch to dark mode" : "switch to light mode"
+        }
+      />
+      <Text>Light</Text>
+    </HStack>
+  );
+}
