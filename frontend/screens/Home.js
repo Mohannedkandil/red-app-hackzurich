@@ -1,56 +1,32 @@
 import React from "react";
-import { Container, Icon, IconButton, Text } from "native-base";
-import { Entypo } from "@expo/vector-icons";
+import {Container, HStack, Icon, IconButton, View, Text} from "native-base";
+import ChallengeTabView from "../components/ChallengeTabView";
+import LeaderboardTabView from "../components/LeaderboardTabView";
+import {Entypo} from "@expo/vector-icons";
+import MenuStagger from "../components/MenuStagger";
 
 export default function Home({ navigation }) {
     return (
-        <Container>
-            <Text>Screen Mockup</Text>
-            <IconButton
-                icon={<Icon as={Entypo} name="camera" />}
-                borderRadius="full"
-                _icon={{
-                    color: "orange.500",
-                    size: "md",
-                }}
-                onPress={() => navigation.navigate("ScanProduct")}
-            />
-            <IconButton
-                icon={<Icon as={Entypo} name="user" />}
-                borderRadius="full"
-                _icon={{
-                    color: "orange.500",
-                    size: "md",
-                }}
-                onPress={() => navigation.navigate("Profile")}
-            />
-            <IconButton
-                icon={<Icon as={Entypo} name="shop" />}
-                borderRadius="full"
-                _icon={{
-                    color: "orange.500",
-                    size: "md",
-                }}
-                onPress={() => navigation.navigate("Checkout")}
-            />
-            <IconButton
-                icon={<Icon as={Entypo} name="store" />}
-                borderRadius="full"
-                _icon={{
-                    color: "orange.500",
-                    size: "md",
-                }}
-                onPress={() => navigation.navigate("CheckIn")}
-            />
-            <IconButton
-                icon={<Icon as={Entypo} name="calendar" />}
-                borderRadius="full"
-                _icon={{
-                    color: "orange.500",
-                    size: "md",
-                }}
-                onPress={() => navigation.navigate("WeeklyChallenge")}
-            />
-        </Container>
+        <View flex={1} ml={3} mr={3} mt={10}>
+            <ChallengeTabView/>
+            <LeaderboardTabView/>
+            <HStack justifyContent="space-between" mb="5" alignText="bottom">
+                <IconButton
+                    icon={<Icon as={Entypo} name="user"/>}
+                    borderRadius="full"
+                    _icon={{color: "#ED702D"}}
+                    onPress={() => navigation.navigate("Profile")}
+                />
+                <MenuStagger/>
+                <IconButton
+                    icon={<Icon as={Entypo} name="camera"/>}
+                    borderRadius="full"
+                    _icon={{color: "#ED702D"}}
+                    onPress={() => navigation.navigate("ScanProduct")}
+                />
+            </HStack>
+        </View>
     );
 }
+
+
