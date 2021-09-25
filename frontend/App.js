@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import Home from "./screens/Home";
 import Profile from "./screens/Profile";
 import ScanProduct from "./screens/ScanProduct";
+import Challenges from "./screens/Challenges";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ export default function App() {
                     <Stack.Screen name="Home" component={Home}/>
                     <Stack.Screen name="Profile" component={Profile}/>
                     <Stack.Screen name="ScanProduct" component={ScanProduct}/>
+                    <Stack.Screen name="Challenges" component={Challenges}/>
                 </Stack.Navigator>
             </NavigationContainer>
         </NativeBaseProvider>

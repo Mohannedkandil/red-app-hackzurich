@@ -42,7 +42,8 @@ const MonthlyTab = () => <VStack space={1.5} mt="1.5">{monthlyChallenges.map((el
             {
                 elem.xp
                     ? <Text fontSize="13px" textAlign="center" color="#ffffff">{elem.xp} {"\n"}XP</Text>
-                    : <Image alt="free product" source={require('../assets/free-product.jpg')} width="20px" maxWidth="100%" maxHeight="100%"/>
+                    :
+                    <Image alt="free product" source={require('../assets/free-product.jpg')} width="20px" maxWidth="100%" maxHeight="100%"/>
             }
         </Circle>
     </HStack>
@@ -56,7 +57,7 @@ const renderScene = SceneMap({
     monthly: MonthlyTab,
 });
 
-export default function Challenges() {
+export default function ChallengeTabView() {
 
     const [index, setIndex] = React.useState(1);
     const [routes] = React.useState([
