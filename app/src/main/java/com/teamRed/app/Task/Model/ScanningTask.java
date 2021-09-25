@@ -3,32 +3,33 @@ package com.teamRed.app.Task.Model;
 import com.teamRed.app.Challenges.Model.ChallengeDuration;
 import org.springframework.data.annotation.PersistenceConstructor;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
-import java.util.Calendar;
 import java.util.Locale;
 
 public class ScanningTask implements Task {
 
 
     private final String description;
+    private final String productName;
     private LocalDateTime startDate;
     private LocalDateTime finishDate;
     private boolean isCompleted;
 
     @PersistenceConstructor
-    public ScanningTask(String description,LocalDateTime startDate, LocalDateTime finishDate, boolean isCompleted) {
+    public ScanningTask(String description, String productName, LocalDateTime startDate, LocalDateTime finishDate, boolean isCompleted) {
         this.description = description;
+        this.productName = productName;
         this.startDate = startDate;
         this.finishDate = finishDate;
         this.isCompleted = isCompleted;
     }
 
-    public ScanningTask(String description, ChallengeDuration challengeDuration) {
+    public ScanningTask(String description, ChallengeDuration challengeDuration, String productName) {
         this.description = description;
+        this.productName = productName;
         this.startDate = LocalDateTime.now();
         switch (challengeDuration) {
             case DAILY:
@@ -85,4 +86,7 @@ public class ScanningTask implements Task {
         isCompleted = completed;
     }
 
+    public String getProductName() {
+        return productName;
+    }
 }

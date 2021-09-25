@@ -1,6 +1,7 @@
 package com.teamRed.app.User.Model;
 
 import com.teamRed.app.Challenges.Model.Challenge;
+import com.teamRed.app.Challenges.Service.ChallengeGenerator;
 import com.teamRed.app.Products.Model.CartEnum;
 import com.teamRed.app.Products.Model.Product;
 import org.springframework.data.annotation.Id;
@@ -38,6 +39,7 @@ public class User {
         this.completedChallenges = new HashMap<>();
         this.productCart = new ArrayList<>();
         this.groceryList = new ArrayList<>();
+        activeChallenges.addAll(ChallengeGenerator.generateEveryChallenge());
     }
 
     public User(String email, int level, int experiencePoints) {
@@ -153,4 +155,27 @@ public class User {
     public Map<LocalDateTime, Challenge> getCompletedChallenges() {
         return completedChallenges;
     }
+
+    public void checkProgressOnChallenges() {
+        List<Challenge> expiredChallenges = new ArrayList<>();
+        this.activeChallenges.forEach(challenge -> {
+            if (challenge.hasExpired())
+                expiredChallenges.add(challenge);
+        });
+        removeFromActiveChallenges(expiredChallenges);
+        List<Challenge> completedChallenge = new ArrayList<>();
+        this.activeChallenges.forEach(challenge -> {
+            if (challenge.hasBeenCompleted()) {
+                this.experiencePoints += challenge.getExperiencePoints();
+                completedChallenges.put(LocalDateTime.now(), challenge);
+                completedChallenge.add(challenge);
+            }
+        });
+        removeFromActiveChallenges(completedChallenge);
+    }
+
+    private void removeFromActiveChallenges(List<Challenge> challenges) {
+        challenges.forEach(this.activeChallenges::remove);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.teamRed.app.Products.Service;
 
+import com.teamRed.app.Products.Model.Product;
 import com.teamRed.app.Products.Repo.ProductRepository;
 import com.teamRed.app.User.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,4 +36,6 @@ public class ProductService {
         }
         return false;
     }
+
+//    public static Product getRandomGroceryProduct() {}
 }
