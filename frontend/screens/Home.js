@@ -12,21 +12,4 @@ export default function Home({navigation}) {
     );
 }
 
-// {/*<IconButton*/}
-// {/*    icon={<Icon as={Entypo} name="camera"/>}*/}
-// {/*    borderRadius="full"*/}
-// {/*    _icon={{*/}
-// {/*        color: "orange.500",*/}
-// {/*        size: "md",*/}
-// {/*    }}*/}
-// {/*    onPress={() => navigation.navigate("ScanProduct")}*/}
-// {/*/>*/}
-// {/*<IconButton*/}
-// {/*    icon={<Icon as={Entypo} name="user"/>}*/}
-// {/*    borderRadius="full"*/}
-// {/*    _icon={{*/}
-// {/*        color: "orange.500",*/}
-// {/*        size: "md",*/}
-// {/*    }}*/}
-// {/*    onPress={() => navigation.navigate("Profile")}*/}
-// {/*/>*/}
+

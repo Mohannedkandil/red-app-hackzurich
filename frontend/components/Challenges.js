@@ -75,7 +75,7 @@ export default function Challenges() {
                         inputIndex === i ? 1 : 0.5
                     ),
                 });
-                const color = index === i ? '#1f2937' : '#a1a1aa';
+                const color = index === i ? '#ED702D' : '#444444';
                 const borderColor = index === i ? '#ED702D' : 'transparent';
 
                 return (
