@@ -64,42 +64,21 @@ export default function App() {
             <View style={styles.barcodebox}>
                 <BarCodeScanner
                     onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-                    style={{ height: 400, width: 400 }} />
+                    style={{ height: 490, width: 368 }} />
             </View>
             <Text style={styles.maintext}>{text}</Text>
 
             {scanned && <Button colorScheme="success" width={40} onPress={() => setScanned(false)} >
                 <Text style={{ color: "white", fontWeight: 'bold' }}>Scan Again?</Text>
             </Button>}
-            <Box
-                bg="#FFFFFF"
-                rounded="lg"
-                height="350px"
-                width="350px"
-                borderColor="#FFFFFF"
-                borderWidth="10"
-            >
-                <ScrollView
-                    alignSelf="center"
-                    _contentContainerStyle={{
-                        px: "50px",
-                        mb: "4",
-                    }}>
-                    <Stack space={3} alignItems="center">
-                        <HStack space={3}>
-                            <Circle size={5} bg="white" borderWidth="0.25" borderColor="#ED702D">
-                                <Text>1</Text>
-                            </Circle>
-                            <Text style={styles.productInfo}>Product Name</Text>
-                            <Text style={styles.productInfo}>3.50</Text>
-                        </HStack>
-                        <VStack space={1} marginBottom={20}>
-                            <Text>CHF 3.50</Text>
-                        </VStack>
-                    </Stack>
 
-                </ScrollView>
-            </Box>
+            <Stack space={2} alignItems="center">
+                <HStack space={2} alignItems="center">
+                    <Button>Profile</Button>
+                    <Button>Scanf off</Button>
+                </HStack>
+            </Stack>
+
         </View>
 
 
@@ -123,10 +102,10 @@ const styles = StyleSheet.create({
     barcodebox: {
         alignItems: 'center',
         justifyContent: 'center',
-        height: 300,
-        width: 300,
+        height: 490,
+        width: 368,
         overflow: 'hidden',
-        borderRadius: 30,
+        borderRadius: 10,
         backgroundColor: 'tomato'
     },
     productInfo: {
