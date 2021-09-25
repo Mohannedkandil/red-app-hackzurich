@@ -11,29 +11,24 @@ import java.time.temporal.WeekFields;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class ScanningTask {
+public class ScanningTask implements Task {
 
 
     private final String description;
-    private final int requirement;
-    private int progress;
     private LocalDateTime startDate;
     private LocalDateTime finishDate;
     private boolean isCompleted;
 
     @PersistenceConstructor
-    public ScanningTask(String description, int requirement, int progress, LocalDateTime startDate, LocalDateTime finishDate, boolean isCompleted) {
+    public ScanningTask(String description,LocalDateTime startDate, LocalDateTime finishDate, boolean isCompleted) {
         this.description = description;
-        this.requirement = requirement;
-        this.progress = progress;
         this.startDate = startDate;
         this.finishDate = finishDate;
         this.isCompleted = isCompleted;
     }
 
-    public ScanningTask(String description, int requirement, ChallengeDuration challengeDuration) {
+    public ScanningTask(String description, ChallengeDuration challengeDuration) {
         this.description = description;
-        this.requirement = requirement;
         this.startDate = LocalDateTime.now();
         switch (challengeDuration) {
             case DAILY:
@@ -55,25 +50,14 @@ public class ScanningTask {
                 throw new IllegalArgumentException("The enum doesn't exist for Challenge Duration");
         }
         this.isCompleted = false;
-        this.progress = 0;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }
 
-    public int getRequirement() {
-        return requirement;
-    }
-
-    public int getProgress() {
-        return progress;
-    }
-
-    public void setProgress(int progress) {
-        this.progress = progress;
-    }
-
+    @Override
     public LocalDateTime getStartDate() {
         return startDate;
     }
@@ -82,6 +66,7 @@ public class ScanningTask {
         this.startDate = startDate;
     }
 
+    @Override
     public LocalDateTime getFinishDate() {
         return finishDate;
     }
@@ -90,11 +75,14 @@ public class ScanningTask {
         this.finishDate = finishDate;
     }
 
+    @Override
     public boolean isCompleted() {
         return isCompleted;
     }
 
+    @Override
     public void setCompleted(boolean completed) {
         isCompleted = completed;
     }
+
 }
