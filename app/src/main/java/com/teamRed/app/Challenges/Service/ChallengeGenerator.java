@@ -17,19 +17,19 @@ public class ChallengeGenerator {
     }
 
     public static Challenge generateWeeklyProductScanningChallenge() {
-        return new Challenge("1", SCANNING_CHALLENGE, "Scan a product 10 times in a week at Migros", TaskGenerator.parameterTaskTypeProductScanningTen(), 100, ChallengeDuration.WEEKLY, LocalDateTime.now());
+        return new Challenge("1", SCANNING_CHALLENGE, "Scan a product 10 times in a week at Migros", TaskGenerator.parameterTaskTypeProductScanningTen(), 100, ChallengeDuration.WEEKLY, LocalDateTime.now(), true);
     }
 
     public static Challenge generateMonthlyProductScanningChallenge() {
-        return new Challenge("2", SCANNING_CHALLENGE, "Scan a product 100 times in a week at Migros", TaskGenerator.parameterTaskTypeProductScanningHundred(), 1000, ChallengeDuration.MONTHLY, LocalDateTime.now());
+        return new Challenge("2", SCANNING_CHALLENGE, "Scan a product 100 times in a week at Migros", TaskGenerator.parameterTaskTypeProductScanningHundred(), 1000, ChallengeDuration.MONTHLY, LocalDateTime.now(), true);
     }
 
     public static Challenge generateWeeklyProductScanningChallengeThreeStar() {
-        return new Challenge("3", SCANNING_CHALLENGE, "Scan a three starred product 10 times in a week at Migros", TaskGenerator.parameterTaskTypeProductScanningTen(), 300, ChallengeDuration.WEEKLY, LocalDateTime.now());
+        return new Challenge("3", SCANNING_CHALLENGE, "Scan a three starred product 10 times in a week at Migros", TaskGenerator.parameterTaskTypeProductScanningTen(), 300, ChallengeDuration.WEEKLY, LocalDateTime.now(), true);
     }
 
     public static Challenge generateWeeklyProductScanningChallengeFiveStar() {
-        return new Challenge("4", SCANNING_CHALLENGE, "Scan a five starred product 10 times in a week at Migros", TaskGenerator.parameterTaskTypeProductScanningTen(), 500, ChallengeDuration.WEEKLY, LocalDateTime.now());
+        return new Challenge("4", SCANNING_CHALLENGE, "Scan a five starred product 10 times in a week at Migros", TaskGenerator.parameterTaskTypeProductScanningTen(), 500, ChallengeDuration.WEEKLY, LocalDateTime.now(), true);
     }
 
     public static List<Challenge> generateEveryChallenge() {
@@ -40,5 +40,22 @@ public class ChallengeGenerator {
         challengeList.add(generateWeeklyProductScanningChallengeThreeStar());
         challengeList.add(generateWeeklyProductScanningChallengeFiveStar());
         return challengeList;
+    }
+
+    public static Challenge generateChallengeById(String id) {
+        switch (id) {
+            case "0":
+                return generateStampChallenge();
+            case "1":
+                return generateWeeklyProductScanningChallenge();
+            case "2":
+                return generateMonthlyProductScanningChallenge();
+            case "3":
+                return generateWeeklyProductScanningChallengeThreeStar();
+            case "4":
+                return generateWeeklyProductScanningChallengeFiveStar();
+            default:
+                throw new IllegalArgumentException("No such Template exists");
+        }
     }
   }

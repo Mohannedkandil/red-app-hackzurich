@@ -1,5 +1,6 @@
 package com.teamRed.app.User.Controller;
 
+import com.teamRed.app.User.Model.User;
 import com.teamRed.app.User.Model.UserDTO;
 import com.teamRed.app.User.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,24 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/{email}")
+    @GetMapping("/get/{email}")
     public ResponseEntity<UserDTO> getByEmail(@PathVariable("email") String email) {
         return userService.getUserByEmail(email).map(user -> ResponseEntity.ok(new UserDTO(user))).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @GetMapping("/create/{email}")
+    public ResponseEntity<Boolean> createUser(@PathVariable("email") String email) {
+        return ResponseEntity.ok(userService.createNewUser(email));
+    }
+
+    @GetMapping("/setAvatar/{email}/{avatarUrl}")
+    public void setUserAvatar(@PathVariable("email") String email, @PathVariable("avatarUrl") String avatarUrl) {
+        var u = userService.getUserByEmail(email);
+        if (u.isPresent()) {
+            User user = u.get();
+            user.setUserAvatar(avatarUrl);
+        }
+    }
+
 
 }

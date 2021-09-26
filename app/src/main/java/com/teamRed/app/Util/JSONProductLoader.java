@@ -31,14 +31,8 @@ public class JSONProductLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-//        String filename="100105400000.json";
-//        Path pathToFile = Paths.get(filename);
-//        System.out.println(pathToFile.toAbsolutePath());
-        System.out.println("Hello");
         var files = readAllProducts();
-        System.out.println("Files Names Read");
         readAndInsertAllFiles(files);
-
     }
 
     private void readAndInsertAllFiles(Set<String> files) {
@@ -54,7 +48,6 @@ public class JSONProductLoader implements ApplicationRunner {
         });
         var prods = products.stream().filter(product -> product.getRegionalAvailibility().getAvailibilityInTicino() != null).collect(Collectors.toList());
         prods.forEach(productRepository::insert);
-        System.out.println(prods.stream().filter(prod -> prod.getName().toLowerCase(Locale.ROOT).contains("eggs")).collect(Collectors.toList()).size());
     }
 
     private Set<String> readAllProducts() {
