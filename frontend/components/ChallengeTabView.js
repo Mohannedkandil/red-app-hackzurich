@@ -76,8 +76,8 @@ export default function ChallengeTabView() {
                         inputIndex === i ? 1 : 0.5
                     ),
                 });
-                const color = index === i ? '#ED702D' : '#444444';
-                const borderColor = index === i ? '#ED702D' : 'transparent';
+                const color = index === i ? '#ffffff' : '#444444';
+                const borderColor = index === i ? '#ffffff' : 'transparent';
 
                 return (
                     <Box

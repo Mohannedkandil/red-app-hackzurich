@@ -1,6 +1,7 @@
 import React from "react";
-import {Center, Flex, Heading, Image, Pressable, Progress, Text, VStack} from "native-base";
+import {Center, Flex, Heading, Image, Pressable, Progress, Text, View, VStack} from "native-base";
 import ChallengeTabView from "../components/ChallengeTabView";
+import {ImageBackground} from "react-native";
 
 const data = [
     {imageLink: require('../assets/achievements/1.png'), xpAchieved: 500, xpTotal: 500},
@@ -22,23 +23,27 @@ const data = [
 
 export default function Challenges({navigation}) {
 
-    return <VStack flex={1} ml={3} mr={3} mt={10} mb={0}>
-        <Heading mt="4" mb="3">Challenges</Heading>
-        <ChallengeTabView/>
-        <Heading mb={5}>Achievements</Heading>
-        <Flex direction="row" flex={1} flexWrap="wrap" justifyContent="space-between">
-            {
-                data.map((x, index) => <Flex key={index} mb="20px" mr="7px" ml="7px" direction="column" alignItems="center">
-                    <Image size="50px" source={x.imageLink} alt="dummy"/>
-                    <Progress value={100}/>
-                    <Text>{x.xpAchieved}/{x.xpTotal}</Text>
-                </Flex>)
-            }
-        </Flex>
-        <Center>
-            <Pressable mt="40px" mb="7" onPress={() => navigation.navigate("Home")}>
-                <Image size="55px" source={require('../assets/menu/icon-close.png')} alt="Back to home screen"/>
-            </Pressable>
-        </Center>
-    </VStack>
+    return <View flex={1}>
+        <ImageBackground source={require('../assets/background.png')} style={{flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
+            <VStack flex={1} ml={3} mr={3} mt={10} mb={0}>
+                <Heading mt="4" mb="3">Challenges</Heading>
+                <ChallengeTabView/>
+                <Heading mb={5}>Achievements</Heading>
+                <Flex direction="row" flex={1} flexWrap="wrap" justifyContent="space-between">
+                    {
+                        data.map((x, index) => <Flex key={index} mb="20px" mr="7px" ml="7px" direction="column" alignItems="center">
+                            <Image size="50px" source={x.imageLink} alt="dummy"/>
+                            <Progress value={100}/>
+                            <Text>{x.xpAchieved}/{x.xpTotal}</Text>
+                        </Flex>)
+                    }
+                </Flex>
+                <Center>
+                    <Pressable mt="40px" mb="7" onPress={() => navigation.navigate("Home")}>
+                        <Image size="55px" source={require('../assets/menu/icon-close.png')} alt="Back to home screen"/>
+                    </Pressable>
+                </Center>
+            </VStack>
+        </ImageBackground>
+    </View>
 }
