@@ -3,14 +3,14 @@
 
 ## Table of Contents
 
-- [Inspiration](#Inspiration)
-- [What it does](#What it does)
-- [Challenges](#Challenges)
-- [Accomplishments](#Accomplishments)
-- [What we learned](#What we learned)
-- [Lessons Learned](#lessons-learned)
-- [What’s next for scarrot](#What’s next for scarrot)
-- [UI](#ui)
+- [Inspiration]
+- [What it does]
+- [Challenges]
+- [Accomplishments]
+- [What we learned]
+- [Lessons Learned]
+- [What’s next for scarrot]
+- [UI]
 
 
 ## Inspiration
