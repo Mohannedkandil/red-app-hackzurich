@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { Container, Icon, IconButton, Text, Circle, Center, Stack, HStack, Image } from "native-base";
+import {Container, Icon, IconButton, Text, Circle, Center, Stack, HStack, Image, Pressable} from "native-base";
 import { Entypo } from "@expo/vector-icons";
 
 export default function Checkout({ navigation }) {
@@ -8,6 +8,7 @@ export default function Checkout({ navigation }) {
         <View style={{ backgroundColor: '#ED702D', flex: 1 }}>
             <HStack space={2} alignItems="center" mt={50} padding={10} width={300}>
                 <Image
+                    alt="dummy"
                     source={
                         require('../assets/component_24.png')
                     }
@@ -24,18 +25,9 @@ export default function Checkout({ navigation }) {
                 </Circle>
             </Center>
             <Center flex={1} mt={20}>
-
-                <Circle size={30} bg="#FFFFFF">
-                    <IconButton
-                        icon={<Icon as={Entypo} name="cross" />}
-                        borderRadius="full"
-                        _icon={{
-                            color: "#ED702D",
-                            size: "md",
-                        }}
-                        onPress={() => navigation.navigate("Profile")}
-                    />
-                </Circle>
+                <Pressable onPress={() => navigation.navigate("Home")} mt="15px">
+                    <Image size="55px" source={require('../assets/menu/icon-close.png')} alt="Back to home screen"/>
+                </Pressable>
             </Center>
         </View>
 
