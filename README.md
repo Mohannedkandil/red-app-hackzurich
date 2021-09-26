@@ -3,15 +3,14 @@
 
 ## Table of Contents
 
-- [Inspiration]
-- [What it does]
-- [Challenges]
-- [Accomplishments]
-- [What we learned]
-- [Lessons Learned]
-- [What’s next for scarrot]
-- [UI]
-
+- Inspiration
+- What it does
+- Challenges
+- Accomplishments
+- What we learned
+- Lessons Learned
+- What’s next for scarrot
+- UI
 
 ## Inspiration
 We were inspired by the [Migros workshop/challenge](https://www.migros.ch/de/hackzurich.html). We liked the idea of getting people to buy more sustainable products through gamification.
