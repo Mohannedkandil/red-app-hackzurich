@@ -1,0 +1,52 @@
+[
+  {
+    "challengeId": "0",
+    "title" : "Collect Stamps",
+    "description" : "Get a stamp per visit to Migros",
+    "taskTypes" : {
+      "STAMP" : 8
+    },
+    "experiencePoints" : 500,
+    "challengeDuration" : "NA"
+  },
+  {
+    "challengeId": "1",
+    "title" : "Scan a product",
+    "description" : "Scan a product 10 times in a week at Migros",
+    "taskTypes" : {
+      "PRODUCT_SCANNING" : 10
+    },
+    "experiencePoints" : 100,
+    "challengeDuration" : "WEEKLY"
+  },
+  {
+    "challengeId": "2",
+    "title" : "Scan starred product",
+    "description" : "Scan a 3-star product 10 times in a week at Migros",
+    "taskTypes" : {
+      "PRODUCT_SCANNING" : 10
+    },
+    "experiencePoints" : 200,
+    "challengeDuration" : "WEEKLY"
+  },
+  {
+    "challengeId": "3",
+    "title" : "Scan a starred product",
+    "description" : "Scan a 5-starred product 10 times in a week at Migros",
+    "taskTypes" : {
+      "PRODUCT_SCANNING" : 10
+    },
+    "experiencePoints" : 300,
+    "challengeDuration" : "WEEKLY"
+  },
+  {
+    "challengeId": "4",
+    "title" : "Scan some products",
+    "description" : "Scan 100 products in a month at Migros",
+    "taskTypes" : {
+      "PRODUCT_SCANNING" : 100
+    },
+    "experiencePoints" : 1000,
+    "challengeDuration" : "MONTHLY"
+  }
+]
