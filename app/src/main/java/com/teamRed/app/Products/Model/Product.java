@@ -13,12 +13,12 @@ public class Product {
     private String Id;
     @JsonProperty("name")
     private String name;
-
-//    @PersistenceConstructor
-//    public Product(String Id, String name) {
-//        this.Id = Id;
-//        this.name = name;
-//    }
+    @JsonProperty("regional_availability")
+    private RegionalAvailibility regionalAvailibility;
+    @JsonProperty("m_check2")
+    private MCheck mCheck;
+    @JsonProperty("declarations")
+    private Declaration declaration;
 
     public String getId() {
         return Id;
@@ -47,5 +47,30 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public RegionalAvailibility getRegionalAvailibility() {
+        return regionalAvailibility;
+    }
+
+    public void setRegionalAvailibility(RegionalAvailibility regionalAvailibility) {
+        this.regionalAvailibility = regionalAvailibility;
+    }
+
+
+    public Declaration getDeclaration() {
+        return declaration;
+    }
+
+    public void setDeclaration(Declaration declaration) {
+        this.declaration = declaration;
+    }
+
+    public MCheck getmCheck() {
+        return mCheck;
+    }
+
+    public void setmCheck(MCheck mCheck) {
+        this.mCheck = mCheck;
     }
 }
