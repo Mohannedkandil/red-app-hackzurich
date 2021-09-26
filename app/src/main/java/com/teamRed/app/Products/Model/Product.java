@@ -1,19 +1,24 @@
 package com.teamRed.app.Products.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.PersistenceConstructor;
 
 import java.util.Objects;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Product {
 
-    private final String Id;
-    private final String name;
+    @JsonProperty("id")
+    private String Id;
+    @JsonProperty("name")
+    private String name;
 
-    @PersistenceConstructor
-    public Product(String Id, String name) {
-        this.Id = Id;
-        this.name = name;
-    }
+//    @PersistenceConstructor
+//    public Product(String Id, String name) {
+//        this.Id = Id;
+//        this.name = name;
+//    }
 
     public String getId() {
         return Id;
@@ -34,5 +39,13 @@ public class Product {
     @Override
     public int hashCode() {
         return Objects.hash(getId());
+    }
+
+    public void setId(String id) {
+        Id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

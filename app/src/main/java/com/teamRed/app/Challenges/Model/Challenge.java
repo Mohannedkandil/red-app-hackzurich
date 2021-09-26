@@ -60,7 +60,6 @@ public class Challenge implements Comparable<Challenge>{
         this.challengeDuration = duration;
         taskTypeIntegerMap.forEach((key, value) -> {
             for (int i = 0; i < value; i++) {
-                Product product =
                 taskList.add(TaskGenerator.taskReturner(key, "", duration));
             }
         });
