@@ -7,7 +7,6 @@ import com.teamRed.app.Task.Model.TaskType;
 import com.teamRed.app.Task.Service.TaskGenerator;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.PersistenceConstructor;
-import org.springframework.security.core.parameters.P;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
@@ -46,6 +45,7 @@ public class Challenge implements Comparable<Challenge>{
         this.experiencePoints = experiencePoints;
         this.challengeStartDate = challengeStartDate;
         this.challengeDuration = duration;
+        this.taskList = new ArrayList<>();
         taskTypeIntegerMap.forEach((key, value) -> {
             for (int i = 0; i < value; i++) {
                 taskList.add(TaskGenerator.taskReturner(key, "", duration));
@@ -65,6 +65,7 @@ public class Challenge implements Comparable<Challenge>{
         products = filterFoodProducts(products);
         var sustainableProducts = filterSustainableGoods(products);
         var size = sustainableProducts.size();
+        this.taskList = new ArrayList<>();
         taskTypeIntegerMap.forEach((key, value) -> {
             for (int i = 0; i < value; i++) {
                 var rand = new SecureRandom().nextInt(size);
