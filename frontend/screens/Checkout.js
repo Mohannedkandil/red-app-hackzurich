@@ -6,15 +6,15 @@ import { Entypo } from "@expo/vector-icons";
 export default function Checkout({ navigation }) {
     return (
         <View style={{ backgroundColor: '#ED702D', flex: 1 }}>
-            <HStack space={2} alignItems="center" mb={20} flex={1}>
+            <HStack space={2} alignItems="center" mt={50} padding={10} width={300}>
                 <Image
                     source={
                         require('../assets/component_24.png')
                     }
                     size="80px"
                 />
-                <Text color="white" fontSize="xl" fontWeight="bold" lineHeight="23">
-                    Transfering cart. Please proceed on the checkout machine.
+                <Text color="white" fontSize="xl" fontWeight="bold" lineHeight="23" alignItems="center">
+                    Are you sure you scanned all products?
                 </Text>
             </HStack>
             <Center px="5">
