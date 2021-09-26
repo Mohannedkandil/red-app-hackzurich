@@ -26,8 +26,10 @@ public class ProductController {
     public ResponseEntity<Boolean> addToGroceryList(@PathVariable("userEmail") String userEmail, @PathVariable("productId") String productId) {
         var user = userService.getUserByEmail(userEmail);
         if (user.isPresent()) {
-            if (productService.addProductToGroceryList(user.get(), productId))
+            if (productService.addProductToGroceryList(user.get(), productId)) {
+                userService.saveUser(user.get());
                 return ResponseEntity.ok(true);
+            }
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.badRequest().build();
@@ -37,8 +39,10 @@ public class ProductController {
     public ResponseEntity<Boolean> addProductToCart(@PathVariable("userEmail") String userEmail, @PathVariable("productId") String productId) {
         var user = userService.getUserByEmail(userEmail);
         if (user.isPresent()) {
-            if (productService.addProductToCart(user.get(), productId))
+            if (productService.addProductToCart(user.get(), productId)) {
+                userService.saveUser(user.get());
                 return ResponseEntity.ok(true);
+            }
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.badRequest().build();
@@ -56,8 +60,10 @@ public class ProductController {
     public ResponseEntity<Boolean> incrementInGroceryList(@PathVariable("userEmail") String userEmail, @PathVariable("productId") String productId) {
         var user = userService.getUserByEmail(userEmail);
         if (user.isPresent()) {
-            if (productService.addProductToGroceryList(user.get(), productId))
+            if (productService.addProductToGroceryList(user.get(), productId)) {
+                userService.saveUser(user.get());
                 return ResponseEntity.ok(true);
+            }
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.badRequest().build();
@@ -68,6 +74,7 @@ public class ProductController {
         var user = userService.getUserByEmail(userEmail);
         if (user.isPresent()) {
             User u = user.get();
+            userService.saveUser(user.get());
             return ResponseEntity.ok((int) u.getGroceryList().stream().filter(product -> product.getId().equals(productId)).count());
         }
         return ResponseEntity.badRequest().build();
@@ -77,8 +84,10 @@ public class ProductController {
     public ResponseEntity<Boolean> increaseProductToCart(@PathVariable("userEmail") String userEmail, @PathVariable("productId") String productId) {
         var user = userService.getUserByEmail(userEmail);
         if (user.isPresent()) {
-            if (productService.addProductToCart(user.get(), productId))
+            if (productService.addProductToCart(user.get(), productId)) {
+                userService.saveUser(user.get());
                 return ResponseEntity.ok(true);
+            }
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.badRequest().build();

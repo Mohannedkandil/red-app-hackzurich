@@ -36,6 +36,7 @@ public class UserController {
         if (u.isPresent()) {
             User user = u.get();
             user.setUserAvatar(avatarUrl);
+            userService.saveUser(user);
         }
     }
 

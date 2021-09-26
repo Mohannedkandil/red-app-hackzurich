@@ -52,11 +52,15 @@ public class ChallengeController {
     public void checkStampValidityAndUpdate(@PathVariable("email") String email, @PathVariable("date") String date) {
         LocalDateTime dt = LocalDateTime.parse(date, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         userService.updateStampChallenge(email, dt);
+        if (userService.getUserByEmail(email).isPresent())
+            userService.saveUser(userService.getUserByEmail(email).get());
     }
 
     @GetMapping("/scan/{email}/{productId}")
     public void checkScannedProductValidity(@PathVariable("email") String email ,@PathVariable("productId") String productId) {
         userService.updateScannedChallenges(email, productId);
+        if (userService.getUserByEmail(email).isPresent())
+            userService.saveUser(userService.getUserByEmail(email).get());
     }
 
 }
