@@ -1,10 +1,10 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { Container, Icon, IconButton, Text, Circle, Center, VStack, HStack, ZStack, Image, Box, Button } from "native-base";
+import {Container, Icon, IconButton, Text, Circle, Center, VStack, HStack, ZStack, Image, Box, Button, Pressable} from "native-base";
 import { Entypo } from "@expo/vector-icons";
 
 
-export default function WeeklyChallenge() {
+export default function WeeklyChallenge({navigation}) {
     return (
         <View style={{ backgroundColor: '#ED702D', flex: 1 }}>
             <Text color="white" fontSize="xl" fontWeight="bold" padding={12} lineHeight="23">
@@ -40,18 +40,9 @@ export default function WeeklyChallenge() {
                 ultricies, dignissim elit sed, vulputate diam.
             </Text>
             <HStack space={5} alignSelf="center" top={200}>
-
-                <Circle size={30} bg="#FFFFFF" alignContent="center">
-                    <IconButton
-                        icon={<Icon as={Entypo} name="cross" />}
-                        borderRadius="full"
-                        _icon={{
-                            color: "#ED702D",
-                            size: "md",
-                        }}
-                        onPress={() => console.log("Close Checkout")}
-                    />
-                </Circle>
+                <Pressable mt="40px" mb="7" onPress={() => navigation.navigate("Home")}>
+                    <Image size="55px" source={require('../assets/menu/icon-close.png')} alt="Back to home screen"/>
+                </Pressable>
                 <Button colorScheme="light" ml={20}>
                     <Text color="#ED702D">Add to cart</Text>
                 </Button>

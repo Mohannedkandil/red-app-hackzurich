@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from 'react-native';
+import {ImageBackground, StyleSheet, View} from 'react-native';
 
 import { Text, Avatar, HStack, VStack, Progress, Center, Container, Image, Box, Stack, Heading, Circle, ZStack, Square } from "native-base";
 import { alignSelf, flex, flexDirection } from "styled-system";
@@ -8,7 +8,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function Profile() {
     return (
-        <View style={{ backgroundColor: '#EEEEEE', flex: 1 }}>
+        <View flex={1}>
+            <ImageBackground source={require('../assets/background.png')} style={{flex: 1, resizeMode: 'cover', justifyContent: 'center'}}>
             <Text fontWeight="bold" color="black" alignSelf="center" marginTop={10} fontSize={30}>SuperBuyer5</Text>
             <Container style={{ alignSelf: "center", height: "34%" }}>
                 <ZStack alignSelf="center">
@@ -74,6 +75,7 @@ export default function Profile() {
 
 
             </HStack>
+            </ImageBackground>
         </View >
     );
 }

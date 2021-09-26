@@ -17,7 +17,7 @@ import {
     NativeBaseProvider,
 } from "native-base"
 
-export default function App() {
+export default function App({ navigation }) {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [text, setText] = useState('Not yet scanned')
@@ -57,27 +57,23 @@ export default function App() {
                 </Button>
             </View>)
     }
+    if (scanned === true)
+        navigation.navigate("Profile");
+
 
     // Return the View
     return (
         <View style={styles.container}>
+            <Text fontWeight="bold" fontSize={30} color="#ED702D">Scan your store</Text>
             <View style={styles.barcodebox}>
                 <BarCodeScanner
                     onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                     style={{ height: 490, width: 368 }} />
             </View>
-            <Text style={styles.maintext}>{text}</Text>
 
-            {scanned && <Button colorScheme="success" width={40} onPress={() => setScanned(false)} >
-                <Text style={{ color: "white", fontWeight: 'bold' }}>Scan Again?</Text>
-            </Button>}
 
-            <Stack space={2} alignItems="center">
-                <HStack space={2} alignItems="center">
-                    <Button>Profile</Button>
-                    <Button>Scanf off</Button>
-                </HStack>
-            </Stack>
+
+
 
         </View>
 
@@ -91,7 +87,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: '#38A3A5',
+        backgroundColor: '#eeeeee',
         alignItems: 'center',
         justifyContent: 'center',
     },
