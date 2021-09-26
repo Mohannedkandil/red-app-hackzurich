@@ -17,7 +17,7 @@ import {
     NativeBaseProvider,
 } from "native-base"
 
-export default function App() {
+export default function App({ navigation }) {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [text, setText] = useState('Not yet scanned')
@@ -57,6 +57,10 @@ export default function App() {
                 </Button>
             </View>)
     }
+    if (scanned === true && text === "Bio V-Love Pesto") {
+        navigation.navigate("WeeklyChallenge");
+
+    }
 
     // Return the View
     return (
@@ -64,13 +68,22 @@ export default function App() {
             <View style={styles.barcodebox}>
                 <BarCodeScanner
                     onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-                    style={{ height: 400, width: 400 }} />
+                    style={{ height: 250, width: 350 }} />
             </View>
-            <Text style={styles.maintext}>{text}</Text>
 
-            {scanned && <Button colorScheme="success" width={40} onPress={() => setScanned(false)} >
-                <Text style={{ color: "white", fontWeight: 'bold' }}>Scan Again?</Text>
-            </Button>}
+            <Text fontSize={25}> {text}</Text>
+
+            {
+                scanned && <Button colorScheme="success" width={40} onPress={() => setScanned(false)} >
+                    <Text style={{ color: "white", fontWeight: 'bold' }}>Scan Again?</Text>
+                </Button>
+            }
+
+            <Button onPress={() => {
+                if (scanned === true) {
+                    navigation.navigate("Checkout");
+                }
+            }}>Checkout</Button>
             <Box
                 bg="#FFFFFF"
                 rounded="lg"
@@ -100,7 +113,7 @@ export default function App() {
 
                 </ScrollView>
             </Box>
-        </View>
+        </View >
 
 
     );
@@ -112,7 +125,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: '#38A3A5',
+        backgroundColor: '#eeeeee',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -123,8 +136,8 @@ const styles = StyleSheet.create({
     barcodebox: {
         alignItems: 'center',
         justifyContent: 'center',
-        height: 300,
-        width: 300,
+        height: 250,
+        width: 350,
         overflow: 'hidden',
         borderRadius: 30,
         backgroundColor: 'tomato'
