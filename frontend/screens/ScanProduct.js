@@ -83,7 +83,7 @@ export default function App({navigation}) {
                     <Box bg="#FFFFFF" rounded="10px" height="325px" width="350" mt="20px" padding="10px">
                         <ScrollView>
                             {cart.map((x, index) =>
-                                <HStack justifyContent="space-between" mb="10px">
+                                <HStack key={index} justifyContent="space-between" mb="10px">
                                     <Center><Text textAlign="center" bold>{x.amount}</Text></Center>
                                     <VStack key={index}>
                                         <HStack >
