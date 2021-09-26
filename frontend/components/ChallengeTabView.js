@@ -7,7 +7,7 @@ import {SceneMap, TabView} from "react-native-tab-view";
 const dailyChallenges = [
     {name: "Scan a Bio Marroni", xp: 500},
     {name: "Buy 5 animal welfare products", xp: 750, progress: 60},
-    {name: "Buy 3 5-star M-Check products", xp: 750, progress: 33},
+    {name: "Buy 3 5-Star M-Check products", xp: 750, progress: 33},
 ]
 
 const monthlyChallenges = [
