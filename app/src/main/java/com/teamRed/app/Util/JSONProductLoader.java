@@ -54,7 +54,7 @@ public class JSONProductLoader implements ApplicationRunner {
         });
         var prods = products.stream().filter(product -> product.getRegionalAvailibility().getAvailibilityInTicino() != null).collect(Collectors.toList());
         prods.forEach(productRepository::insert);
-        System.out.println(prods.stream().filter(prod -> prod.getId().equals("100110000000")).collect(Collectors.toList()).get(0).getmCheck().getground_and_sea_cargo().getRating());
+        System.out.println(prods.stream().filter(prod -> prod.getName().toLowerCase(Locale.ROOT).contains("eggs")).collect(Collectors.toList()).size());
     }
 
     private Set<String> readAllProducts() {
