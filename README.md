@@ -1,0 +1,2 @@
+The backend will only run when the migros product data (english version) will be under the resources/static folder with products as the parent folder. So the absolute path would look like app/src/main/resources/static/products/ where inside the products folder there will be json files.
+Csv data wasn't taken into consideration.
