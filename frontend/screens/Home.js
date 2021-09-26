@@ -11,7 +11,7 @@ export default function Home({navigation}) {
                 <View flex={1} ml={3} mr={3} mt={10}>
                     <ChallengeTabView/>
                     <LeaderboardTabView/>
-                    <HStack justifyContent="space-between" mb="7" alignText="center" mt="70px">
+                    <HStack justifyContent="space-between" mb="7" alignText="center" mt="33px">
                         <Pressable onPress={() => navigation.navigate("Challenges")}>
                             <Image size="55px" source={require('../assets/menu/icon-challenges.png')} alt="show challenges"/>
                         </Pressable>
