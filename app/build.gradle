@@ -26,3 +26,7 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+processResources {
+	exclude '**/static/**' // Exclude whole "design" directory
+}

@@ -1,56 +1,26 @@
 import React from "react";
-import { Container, Icon, IconButton, Text } from "native-base";
-import { Entypo } from "@expo/vector-icons";
+import {HStack, Image, Pressable, View} from "native-base";
+import ChallengeTabView from "../components/ChallengeTabView";
+import LeaderboardTabView from "../components/LeaderboardTabView";
 
-export default function Home({ navigation }) {
+export default function Home({navigation}) {
     return (
-        <Container>
-            <Text>Screen Mockup</Text>
-            <IconButton
-                icon={<Icon as={Entypo} name="camera" />}
-                borderRadius="full"
-                _icon={{
-                    color: "orange.500",
-                    size: "md",
-                }}
-                onPress={() => navigation.navigate("ScanProduct")}
-            />
-            <IconButton
-                icon={<Icon as={Entypo} name="user" />}
-                borderRadius="full"
-                _icon={{
-                    color: "orange.500",
-                    size: "md",
-                }}
-                onPress={() => navigation.navigate("Profile")}
-            />
-            <IconButton
-                icon={<Icon as={Entypo} name="shop" />}
-                borderRadius="full"
-                _icon={{
-                    color: "orange.500",
-                    size: "md",
-                }}
-                onPress={() => navigation.navigate("Checkout")}
-            />
-            <IconButton
-                icon={<Icon as={Entypo} name="store" />}
-                borderRadius="full"
-                _icon={{
-                    color: "orange.500",
-                    size: "md",
-                }}
-                onPress={() => navigation.navigate("CheckIn")}
-            />
-            <IconButton
-                icon={<Icon as={Entypo} name="calendar" />}
-                borderRadius="full"
-                _icon={{
-                    color: "orange.500",
-                    size: "md",
-                }}
-                onPress={() => navigation.navigate("WeeklyChallenge")}
-            />
-        </Container>
+        <View flex={1} ml={3} mr={3} mt={10}>
+            <ChallengeTabView/>
+            <LeaderboardTabView/>
+            <HStack justifyContent="space-between" mb="7" alignText="center" mt="70px">
+                <Pressable onPress={() => navigation.navigate("Challenges")}>
+                    <Image size="55px" source={require('../assets/menu/icon-challenges.png')} alt="show challenges"/>
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate("Profile")}>
+                    <Image size="55px" source={require('../assets/menu/icon-profile.png')} alt="Show profile"/>
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate("ScanProduct")}>
+                    <Image size="55px" source={require('../assets/menu/icon-camera-on.png')} alt="Start scanning"/>
+                </Pressable>
+            </HStack>
+        </View>
     );
 }
+
+

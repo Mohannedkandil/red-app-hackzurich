@@ -25,9 +25,22 @@ public class ProductController {
     public ResponseEntity<Boolean> addToGroceryList(@PathVariable("userEmail") String userEmail, @PathVariable("productId") String productId) {
         var user = userService.getUserByEmail(userEmail);
         if (user.isPresent()) {
-            productService.addProductToGroceryList(user.get(), productId);
-            return ResponseEntity.ok(true);
+            if (productService.addProductToGroceryList(user.get(), productId))
+                return ResponseEntity.ok(true);
+            return ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.badRequest().build();
     }
+
+    @GetMapping("{userEmail}/cartListAddition/{productId}")
+    public ResponseEntity<Boolean> addProductToCart(@PathVariable("userEmail") String userEmail, @PathVariable("productId") String productId) {
+        var user = userService.getUserByEmail(userEmail);
+        if (user.isPresent()) {
+            if (productService.addProductToCart(user.get(), productId))
+                return ResponseEntity.ok(true);
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
 }
