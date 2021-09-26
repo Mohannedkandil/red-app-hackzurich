@@ -37,7 +37,18 @@ public abstract class TaskGenerator {
     public static Task taskReturner(TaskType taskType, String productName, ChallengeDuration duration) {
         switch (taskType) {
             case PRODUCT_SCANNING:
-                return new ScanningTask("Scan " + productName + "." ,duration, productName);
+                return new ScanningTask("Scan " + productName + "." ,duration, productName, "");
+            case STAMP:
+                return new StampTask("Visit Migros to collect More stamps");
+            default:
+                throw new IllegalArgumentException("Not a valid Task-Type");
+        }
+    }
+
+    public static Task taskReturner(TaskType taskType, String productName, ChallengeDuration duration, String productId) {
+        switch (taskType) {
+            case PRODUCT_SCANNING:
+                return new ScanningTask("Scan " + productName + "." ,duration, productName, productId);
             case STAMP:
                 return new StampTask("Visit Migros to collect More stamps");
             default:

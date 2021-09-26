@@ -19,6 +19,8 @@ public class Product {
     private MCheck mCheck;
     @JsonProperty("declarations")
     private Declaration declaration;
+    @JsonProperty("image")
+    private ProductImage image;
 
     public String getId() {
         return Id;
@@ -72,5 +74,13 @@ public class Product {
 
     public void setmCheck(MCheck mCheck) {
         this.mCheck = mCheck;
+    }
+
+    public ProductImage getImage() {
+        return image;
+    }
+
+    public void setImage(ProductImage image) {
+        this.image = image;
     }
 }

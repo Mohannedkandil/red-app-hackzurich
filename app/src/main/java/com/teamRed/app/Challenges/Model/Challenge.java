@@ -1,5 +1,6 @@
 package com.teamRed.app.Challenges.Model;
 
+import com.teamRed.app.Challenges.Service.ChallengeSingleton;
 import com.teamRed.app.Products.Model.Product;
 import com.teamRed.app.Task.Model.Task;
 import com.teamRed.app.Task.Model.TaskType;
@@ -9,6 +10,7 @@ import org.springframework.data.annotation.PersistenceConstructor;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -43,6 +45,7 @@ public class Challenge implements Comparable<Challenge>{
         this.experiencePoints = experiencePoints;
         this.challengeStartDate = challengeStartDate;
         this.challengeDuration = duration;
+        this.taskList = new ArrayList<>();
         taskTypeIntegerMap.forEach((key, value) -> {
             for (int i = 0; i < value; i++) {
                 taskList.add(TaskGenerator.taskReturner(key, "", duration));
@@ -58,12 +61,55 @@ public class Challenge implements Comparable<Challenge>{
         this.experiencePoints = experiencePoints;
         this.challengeStartDate = challengeStartDate;
         this.challengeDuration = duration;
+        var products = ChallengeSingleton.getInstance().getAllProducts();
+        products = filterFoodProducts(products);
+        var sustainableProducts = filterSustainableGoods(products);
+        var size = sustainableProducts.size();
+        this.taskList = new ArrayList<>();
         taskTypeIntegerMap.forEach((key, value) -> {
             for (int i = 0; i < value; i++) {
-                taskList.add(TaskGenerator.taskReturner(key, "", duration));
+                var rand = new SecureRandom().nextInt(size);
+                taskList.add(TaskGenerator.taskReturner(key, sustainableProducts.get(rand).getName(), duration, sustainableProducts.get(rand).getId()));
             }
         });
         this.challengeFinishDate = taskList.get(new SecureRandom().nextInt(taskList.size())).getFinishDate();
+    }
+
+    private List<Product> filterSustainableGoods(List<Product> products) {
+        List<Product> productsList = new ArrayList<>();
+        products.forEach(product -> {
+            if (product.getmCheck() != null) {
+                if (product.getmCheck().getCarbonFootprint() != null) {
+                    if (product.getmCheck().getCarbonFootprint().getGroundAndSeaCargo() != null) {
+                        if (product.getmCheck().getCarbonFootprint().getGroundAndSeaCargo().getRating() >= 4) {
+                            productsList.add(product);
+                        }
+                    }
+                }
+            }
+        });
+        if (productsList.size() > 0) {
+            return productsList;
+        }
+        return products;
+    }
+
+    private List<Product> filterFoodProducts(List<Product> products) {
+        List<Product> productsList = new ArrayList<>();
+        products.forEach(product -> {
+            if (product.getDeclaration()!=null) {
+                if (product.getDeclaration().getFood() != null) {
+                    if (product.getDeclaration().getFood().getFoodDeclarationGtins() != null) {
+                        if (product.getDeclaration().getFood().getFoodDeclarationGtins().length > 0)
+                            productsList.add(product);
+                    }
+                }
+            }
+        });
+        if (productsList.size() > 0) {
+            return productsList;
+        }
+        return products;
     }
 
     public boolean hasExpired() {
@@ -108,6 +154,10 @@ public class Challenge implements Comparable<Challenge>{
 
     public ChallengeDuration getChallengeDuration() {
         return challengeDuration;
+    }
+
+    public List<Task> getTaskList() {
+        return this.taskList;
     }
 
     @Override

@@ -14,22 +14,27 @@ public class ScanningTask implements Task {
 
     private final String description;
     private final String productName;
+    private final String productId;
     private LocalDateTime startDate;
     private LocalDateTime finishDate;
+    private LocalDateTime completedTime;
     private boolean isCompleted;
 
     @PersistenceConstructor
-    public ScanningTask(String description, String productName, LocalDateTime startDate, LocalDateTime finishDate, boolean isCompleted) {
+    public ScanningTask(String description, String productName, String productId, LocalDateTime startDate, LocalDateTime finishDate, LocalDateTime completedTime, boolean isCompleted) {
         this.description = description;
         this.productName = productName;
+        this.productId = productId;
         this.startDate = startDate;
         this.finishDate = finishDate;
+        this.completedTime = completedTime;
         this.isCompleted = isCompleted;
     }
 
-    public ScanningTask(String description, ChallengeDuration challengeDuration, String productName) {
+    public ScanningTask(String description, ChallengeDuration challengeDuration, String productName, String productId) {
         this.description = description;
         this.productName = productName;
+        this.productId = productId;
         this.startDate = LocalDateTime.now();
         switch (challengeDuration) {
             case DAILY:
@@ -51,6 +56,7 @@ public class ScanningTask implements Task {
                 throw new IllegalArgumentException("The enum doesn't exist for Challenge Duration");
         }
         this.isCompleted = false;
+        this.completedTime = null;
     }
 
     @Override
@@ -88,5 +94,18 @@ public class ScanningTask implements Task {
 
     public String getProductName() {
         return productName;
+    }
+
+
+    public LocalDateTime getCompletedTime() {
+        return completedTime;
+    }
+
+    public void setCompletedTime(LocalDateTime completedTime) {
+        this.completedTime = completedTime;
+    }
+
+    public String getProductId() {
+        return productId;
     }
 }
