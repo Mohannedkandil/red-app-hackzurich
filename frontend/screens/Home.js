@@ -1,29 +1,23 @@
 import React from "react";
-import {HStack, Icon, IconButton, View} from "native-base";
-import Challenges from "../components/Challenges";
+import {HStack, Image, Pressable, View} from "native-base";
+import ChallengeTabView from "../components/ChallengeTabView";
 import LeaderboardTabView from "../components/LeaderboardTabView";
-import {Entypo} from "@expo/vector-icons";
-import MenuStagger from "../components/MenuStagger";
 
 export default function Home({navigation}) {
     return (
         <View flex={1} ml={3} mr={3} mt={10}>
-            <Challenges/>
+            <ChallengeTabView/>
             <LeaderboardTabView/>
-            <HStack justifyContent="space-between" mb="5" alignText="bottom">
-                <IconButton
-                    icon={<Icon as={Entypo} name="user"/>}
-                    borderRadius="full"
-                    _icon={{color: "#ED702D"}}
-                    onPress={() => navigation.navigate("Profile")}
-                />
-                <MenuStagger/>
-                <IconButton
-                    icon={<Icon as={Entypo} name="camera"/>}
-                    borderRadius="full"
-                    _icon={{color: "#ED702D"}}
-                    onPress={() => navigation.navigate("ScanProduct")}
-                />
+            <HStack justifyContent="space-between" mb="7" alignText="center" mt="70px">
+                <Pressable onPress={() => navigation.navigate("Challenges")}>
+                    <Image size="55px" source={require('../assets/menu/icon-challenges.png')} alt="show challenges"/>
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate("Profile")}>
+                    <Image size="55px" source={require('../assets/menu/icon-profile.png')} alt="Show profile"/>
+                </Pressable>
+                <Pressable onPress={() => navigation.navigate("ScanProduct")}>
+                    <Image size="55px" source={require('../assets/menu/icon-camera-on.png')} alt="Start scanning"/>
+                </Pressable>
             </HStack>
         </View>
     );

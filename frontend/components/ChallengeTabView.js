@@ -1,5 +1,5 @@
 import React from "react";
-import {Box, Circle, HStack, Image, Progress, Text, VStack} from "native-base";
+import {Box, Center, Circle, HStack, Image, Progress, Text, VStack} from "native-base";
 import {Animated, Dimensions, Pressable, StatusBar} from "react-native";
 import {SceneMap, TabView} from "react-native-tab-view";
 
@@ -16,7 +16,7 @@ const monthlyChallenges = [
     {name: "Scan 100 items", xp: 2000, progress: 85},
 ]
 
-const DailyTab = () => <Image source={require('../assets/daily-challenges.png')} alt="daily"/>;
+const DailyTab = () => <Center><Image size="225px" source={require('../assets/daily-challenges.png')} alt="daily"/></Center>;
 
 const WeeklyTab = () => <VStack space={1.5} mt="1.5">{dailyChallenges.map((elem, index) => {
     return <HStack key={index} space={3} justifyContent="space-between" alignItems="center" rounded="10px" padding="2" paddingTop="1.5"
@@ -42,7 +42,8 @@ const MonthlyTab = () => <VStack space={1.5} mt="1.5">{monthlyChallenges.map((el
             {
                 elem.xp
                     ? <Text fontSize="13px" textAlign="center" color="#ffffff">{elem.xp} {"\n"}XP</Text>
-                    : <Image alt="free product" source={require('../assets/free-product.jpg')} width="20px" maxWidth="100%" maxHeight="100%"/>
+                    :
+                    <Image alt="free product" source={require('../assets/free-product.jpg')} width="20px" maxWidth="100%" maxHeight="100%"/>
             }
         </Circle>
     </HStack>
@@ -56,7 +57,7 @@ const renderScene = SceneMap({
     monthly: MonthlyTab,
 });
 
-export default function Challenges() {
+export default function ChallengeTabView() {
 
     const [index, setIndex] = React.useState(1);
     const [routes] = React.useState([

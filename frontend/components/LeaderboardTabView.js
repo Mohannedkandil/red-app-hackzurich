@@ -8,24 +8,24 @@ const currentStoreName = "Gundeldingen, Basel";
 
 const storeLeaderboardData = [
     {
-        name: "Abc",
+        name: "Mauro",
         xp: 750,
         avatarUri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU"
     },
     {
-        name: "Def",
+        name: "Lovnesh",
         xp: 400,
         avatarUri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU"
     },
     {
-        name: "Lddf",
+        name: "Mohanad",
         xp: 300,
         avatarUri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU"
     },
     {
         name: "Adrian",
         xp: 101,
-        position: 45,
+        position: 9,
         avatarUri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU"
     },
 ];
