@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {ImageBackground, StyleSheet, View} from 'react-native';
 import {BarCodeScanner} from 'expo-barcode-scanner';
-import {Box, Button, Center, Circle, HStack, ScrollView, Stack, Text, VStack,} from "native-base"
+import {Box, Button, Center, HStack, Image, Pressable, ScrollView, Text, VStack,} from "native-base"
 
 export default function App({navigation}) {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
-    const [text, setText] = useState('Not yet scanned')
+    const [text, setText] = useState('Not yet scanned');
+    const [cart, setCart] = useState([]);
 
     const askForCameraPermission = () => {
         (async () => {
@@ -24,7 +25,14 @@ export default function App({navigation}) {
     const handleBarCodeScanned = ({type, data}) => {
         setScanned(true);
         setText(data)
-        console.log('Type: ' + type + '\nData: ' + data)
+
+        // TODO: Get details from API
+        const existingProduct = cart.find(x => x.id === data);
+        if (existingProduct) {
+            setCart(cart.concat({...existingProduct, amount: existingProduct.amount + 1}));
+        } else {
+            setCart(cart.concat({id: 42, name: "M-Classic Crunchy Erdnussbutter", amount: 1, price: 3.50, hasMCheck: true}));
+        }
     };
 
     // Check permissions and return the screens
@@ -59,48 +67,41 @@ export default function App({navigation}) {
                             style={{height: 250, width: 350}}/>
                     </View>
 
-                    <Text fontSize={25}> {text}</Text>
-
-                    {
-                        scanned && <Button colorScheme="success" width={40} onPress={() => setScanned(false)}>
-                            <Text style={{color: "white", fontWeight: 'bold'}}>Scan Again?</Text>
-                        </Button>
-                    }
-
-                    <Button onPress={() => {
-                        if (scanned === true) {
-                            navigation.navigate("Checkout");
+                    <HStack>
+                        {
+                            scanned && <Button bg="#ED702D" onPress={() => setScanned(false)} mt="20px" mr="10px">
+                                <Text style={{color: "white", fontWeight: 'bold', paddingRight: 10, paddingLeft: 10}}>Scan Again</Text>
+                            </Button>
                         }
-                    }}>Checkout</Button>
-                    <Box
-                        bg="#FFFFFF"
-                        rounded="lg"
-                        height="350px"
-                        width="350px"
-                        borderColor="#FFFFFF"
-                        borderWidth="10"
-                    >
-                        <ScrollView
-                            alignSelf="center"
-                            _contentContainerStyle={{
-                                px: "50px",
-                                mb: "4",
-                            }}>
-                            <Stack space={3} alignItems="center">
-                                <HStack space={3}>
-                                    <Circle size={5} bg="white" borderWidth="0.25" borderColor="#ED702D">
-                                        <Text>1</Text>
-                                    </Circle>
-                                    <Text style={styles.productInfo}>Product Name</Text>
-                                    <Text style={styles.productInfo}>3.50</Text>
-                                </HStack>
-                                <VStack space={1} marginBottom={20}>
-                                    <Text>CHF 3.50</Text>
-                                </VStack>
-                            </Stack>
+                        {
+                            scanned && <Button colorScheme="success" onPress={() => navigation.navigate("Checkout")} mt="20px" ml="10px">
+                                <Text style={{color: "white", fontWeight: 'bold', paddingRight: 10, paddingLeft: 10}}>Checkout</Text>
+                            </Button>
+                        }
+                    </HStack>
 
+                    <Box bg="#FFFFFF" rounded="10px" height="325px" width="350" mt="20px" padding="10px">
+                        <ScrollView>
+                            {cart.map((x, index) =>
+                                <HStack justifyContent="space-between" mb="10px">
+                                    <Center><Text textAlign="center" bold>{x.amount}</Text></Center>
+                                    <VStack key={index}>
+                                        <HStack >
+                                            <Text>{x.name}</Text>
+                                        </HStack>
+                                        <HStack justifyContent="space-between">
+                                            <Text>{x.price} CHF</Text>
+                                            {x.hasMCheck && <Text bold color="#009933">M-CHECK</Text>}
+                                        </HStack>
+                                    </VStack>
+                                    <Text>{x.amount * x.price}</Text>
+                                </HStack>
+                            )}
                         </ScrollView>
                     </Box>
+                    <Pressable onPress={() => navigation.navigate("Home")} mt="15px">
+                        <Image size="55px" source={require('../assets/menu/icon-close.png')} alt="Back to home screen"/>
+                    </Pressable>
                 </Center>
             </ImageBackground>
         </View>
@@ -115,9 +116,6 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        // backgroundColor: '#eeeeee',
-        // alignItems: 'center',
-        // justifyContent: 'center',
     },
     maintext: {
         fontSize: 25,
@@ -130,7 +128,8 @@ const styles = StyleSheet.create({
         width: 350,
         overflow: 'hidden',
         borderRadius: 30,
-        backgroundColor: 'tomato'
+        backgroundColor: 'tomato',
+        marginTop: 40,
     },
     productInfo: {
         fontSize: 14,
