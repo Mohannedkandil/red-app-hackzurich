@@ -7,9 +7,18 @@ import { Entypo } from "@expo/vector-icons";
 export default function WeeklyChallenge() {
     return (
         <View style={{ backgroundColor: '#ED702D', flex: 1 }}>
-            <Text color="white" fontSize="xl" fontWeight="bold" padding={12} lineHeight="23">
-                Weekly challenge product found!
-            </Text>
+            <HStack space={2} alignItems="center" mt={50} padding={10} width={300}>
+                <Image
+                    source={
+                        require('../assets/component_24.png')
+                    }
+                    size="80px"
+                />
+                <Text color="white" fontSize="xl" fontWeight="bold" lineHeight="23" alignItems="center">
+                    Weekly challenge product found! 500XP
+
+                </Text>
+            </HStack>
             <HStack space={3} height={200}>
                 <Text fontWeight={700} fontSize={25} textAlign="left" color="white" ml={4}>Bio V-Love Pesto {"\n"} Genovese {"\n"} CHF 2.90</Text>
                 <ZStack>
@@ -28,17 +37,18 @@ export default function WeeklyChallenge() {
                 }}
             />
 
-            <Text lineHeight={16} fontWeight={700} fontSize={16} color="white" textAlign="left" ml={4}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-                tincidunt leo nunc. Aliquam consequat in turpis sit amet suscipit.
-                Mauris ut magna sit amet lectus rhoncus mattis. Curabitur tempor venenatis auctor.
-                Phasellus lacinia dolor augue, eget ultrices felis tempor lobortis.
-                Sed vitae diam
-                at eros sodales venenatis. Cras convallis ligula ac efficitur congue.
-                Suspendisse
-                vel massa sollicitudin, interdum ipsum sed, faucibus tortor. Aliquam quis lectus
-                ultricies, dignissim elit sed, vulputate diam.
-            </Text>
+            <VStack space={3} alignItems="center" height="100" >
+                <Image
+
+                    source={require('../assets/m-check.png')}
+                />
+                <Text lineHeight={16} fontWeight={700} fontSize={16} color="white" textAlign="left" ml={4} width="340">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+                    tincidunt leo nunc. Aliquam consequat in turpis sit amet suscipit.
+                    Mauris ut magna sit amet lectus rhoncus mattis. Curabitur tempor venenatis auctor.
+                    Phasellus lacinia dolor augue, eget ultrices felis tempor lobortis.
+                </Text>
+            </VStack>
             <HStack space={5} alignSelf="center" top={200}>
 
                 <Circle size={30} bg="#FFFFFF" alignContent="center">
